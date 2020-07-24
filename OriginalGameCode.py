@@ -146,10 +146,10 @@ while True:
     gameIsPlaying = True
 
     while gameIsPlaying:
-        if turn == 'player':
+        if turn == 'PLAYER 1':
             # Player's turn.
             drawBoard(theBoard)
-            move = getComputerMove(theBoard, computerLetter)
+            move = getPlayerMove(theBoard)
             makeMove(theBoard, playerLetter, move)
             print()
             if isWinner(theBoard, playerLetter):
@@ -162,12 +162,15 @@ while True:
                     print('The game is a tie!')
                     break
                 else:
-                    turn = 'computer'
+                    drawBoard(theBoard)
+                    turn = 'PLAYER 2'
 
         else:
             # Computer's turn.
-            move = getComputerMove(theBoard, computerLetter)
+            #move = getComputerMove(theBoard, computerLetter)
+            move = getPlayerMove(theBoard)
             makeMove(theBoard, computerLetter, move)
+
             print()
             if isWinner(theBoard, computerLetter):
                 drawBoard(theBoard)
@@ -178,8 +181,11 @@ while True:
                     drawBoard(theBoard)
                     print('The game is a tie!')
                     break
+
+
                 else:
-                    turn = 'player'
+                    drawBoard(theBoard)
+                    turn = 'PLAYER 1'
 
     if not playAgain():
         break
