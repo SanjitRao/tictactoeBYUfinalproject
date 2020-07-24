@@ -181,11 +181,11 @@ while True:
                     drawBoard(theBoard)
                     print('The game is a tie!')
                     break
-
-
                 else:
                     drawBoard(theBoard)
                     turn = 'PLAYER 1'
 
     if not playAgain():
         break
+
+    print('hall9')
