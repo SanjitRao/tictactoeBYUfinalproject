@@ -33,14 +33,17 @@ def inputPlayerLetter():
 def whoGoesFirst():
     # Randomly choose the player who goes first.
     if random.randint(0, 1) == 0:
-        return 'computer'
+        return 'PLAYER 1'
     else:
-        return 'player'
+        return 'PLAYER 2'
 
 def playAgain():
     # This function returns True if the player wants to play again, otherwise it returns False.
-    print('Do you want to play again? (yes or no)')
-    return input().lower().startswith('y')
+    willPlayAgain = input('Do you want to play again? (yes or no)').lower()
+    if 'yes' in willPlayAgain:
+        return True
+    else:
+        return False
 
 def makeMove(board, letter, move):
     board[move] = letter
@@ -148,13 +151,13 @@ while True:
     while gameIsPlaying:
         if turn == 'PLAYER 1':
             # Player's turn.
-            drawBoard(theBoard)
+            #drawBoard(theBoard)
             move = getPlayerMove(theBoard)
             makeMove(theBoard, playerLetter, move)
             print()
             if isWinner(theBoard, playerLetter):
                 drawBoard(theBoard)
-                print('Hooray! You have won the game!')
+                print('Hooray! ' + turn +' has won the game!')
                 gameIsPlaying = False
             else:
                 if isBoardFull(theBoard):
@@ -164,6 +167,7 @@ while True:
                 else:
                     drawBoard(theBoard)
                     turn = 'PLAYER 2'
+                    print('Now it is '+turn+'\'s turn to move')
 
         else:
             # Computer's turn.
@@ -174,7 +178,7 @@ while True:
             print()
             if isWinner(theBoard, computerLetter):
                 drawBoard(theBoard)
-                print('The computer has beaten you! You lose.')
+                print('Hooray! ' + turn +' has won the game!')
                 gameIsPlaying = False
             else:
                 if isBoardFull(theBoard):
@@ -184,6 +188,7 @@ while True:
                 else:
                     drawBoard(theBoard)
                     turn = 'PLAYER 1'
+                    print('Now it is ' + turn + '\'s turn to move')
 
     if not playAgain():
         break
